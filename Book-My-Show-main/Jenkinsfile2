@@ -10,8 +10,8 @@ pipeline {
 
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        DOCKER_IMAGE = 'akshu20791/bms:latest'
-        EKS_CLUSTER_NAME = 'akshat-eks'
+        DOCKER_IMAGE = 'kolapkaryogesh/bms:latest'
+        EKS_CLUSTER_NAME = 'Yogeshk-eks'
         AWS_REGION = 'us-east-1'
     }
 
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/akshu20791/Book-My-Show.git'
+                git branch: 'master', url: 'https://github.com/YogeshKolapkar/Yogesh-BMS-Project.git'
                 sh 'ls -la'  // Verify files after checkout
             }
         }
@@ -44,7 +44,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
                 }
             }
         }
